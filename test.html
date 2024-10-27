@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Current Cell from Input</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Table with Input Fields</h2>
+<table id="myTable">
+    <tr>
+        <th>Item</th>
+        <th>Description</th>
+        <th>Price</th>
+    </tr>
+    <tr>
+        <td><input type="text" value="Apples"></td>
+        <td><input type="text" value="Fresh green apples"></td>
+        <td><input type="text" value="$1.50"></td>
+    </tr>
+    <tr>
+        <td><input type="text" value="Bananas"></td>
+        <td><input type="text" value="Ripe yellow bananas"></td>
+        <td><input type="text" value="$1.00"></td>
+    </tr>
+    <tr>
+        <td><input type="text" value="Oranges"></td>
+        <td><input type="text" value="Juicy oranges"></td>
+        <td><input type="text" value="$1.20"></td>
+    </tr>
+</table>
+
+<script>
+document.querySelectorAll('#myTable input').forEach(input => {
+    input.addEventListener('focus', function(event) {
+        // Get the current cell (td) containing the input
+        let currentCell = event.target.parentElement;
+        
+        // Optional: highlight the current cell for visibility
+        currentCell.style.backgroundColor = "lightyellow";
+        
+        // Log or perform actions with the cell
+        console.log("Focused cell text:", currentCell.innerText);
+
+        // Remove highlight on blur
+        event.target.addEventListener('blur', () => {
+            currentCell.style.backgroundColor = "";
+        });
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterate Table Columns Example</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Sample Table</h2>
+<table id="myTable">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Apples</td>
+            <td>10</td>
+            <td>$1.00</td>
+        </tr>
+        <tr>
+            <td>Bananas</td>
+            <td>5</td>
+            <td>$0.50</td>
+        </tr>
+        <tr>
+            <td>Cherries</td>
+            <td>15</td>
+            <td>$2.00</td>
+        </tr>
+    </tbody>
+</table>
+
+<button id="iterateColumnsButton">Iterate Columns</button>
+<p id="columnOutput"></p>
+
+<script>
+    document.querySelector("#iterateColumnsButton").addEventListener("click", () => {
+        const table = document.getElementById("myTable");
+        const columnCount = table.rows[0].cells.length; // Get number of columns
+        const output = [];
+
+        // Iterate over each column
+        for (let col = 0; col < columnCount; col++) {
+            const columnValues = [];
+            // Iterate over each row in the current column
+            for (let row = 1; row < table.rows.length; row++) { // Start from row 1 to skip header
+                const cellValue = table.rows[row].cells[col].textContent;
+                columnValues.push(cellValue);
+            }
+            output.push(`Column ${col + 1}: ${columnValues.join(", ")}`);
+        }
+
+        // Display the output
+        document.getElementById("columnOutput").innerHTML = output.join("<br>");
+    });
+</script>
+
+</body>
+</html>
