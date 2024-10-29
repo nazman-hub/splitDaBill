@@ -4,17 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML Table Example</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -25,20 +15,17 @@
             <tr>
                 <th>Item</th>
                 <th>Price</th>
-                <th>Person 1</th>
-                <th>Person 2</th>
-                <th>Person 3</th>
-                <th>Person 4</th>
+
+
             </tr>
         </thead>
         <tbody>
             <tr class="row">
+
                 <td class="item"><input class="item input" type="text"></td>
                 <td class="price"><input class="price input" type="text"></td>
-                <td class="person"><input type="checkbox" class="Nazman select"></td>
-                <td class="person"><input type="checkbox" class="Aqeel select"></td>
-                <td class="person"><input type="checkbox" class="Nazrin select"></td>
-                <td class="person"><input type="checkbox" class="Syamil select"></td>
+                <!-- <td class="person"><input type="checkbox" class="select"></td> -->
+                <div class="persons"></div>            
                 
                 
             </tr>
@@ -47,7 +34,9 @@
 
         </tr>
     </table>
-    <button class="add button">+</button>
+    <button class="add row">add row</button>
+    <button class="add person">add person</button>
+    <input type="text" id="nameInput"></input>
 
 </body>
 </html>
