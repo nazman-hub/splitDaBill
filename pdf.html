@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Reader</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+</head>
+<body>
+    <input type="file" id="file-input" accept=".pdf">
+    <pre id="pdf-output"></pre>
+    
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const pdfOutput = document.getElementById('pdf-output');
+
+        fileInput.addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const pdfData = await file.arrayBuffer();
+                
+                const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+
+                let textContent = '';
+
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    const page = await pdf.getPage(pageNum);
+                    const text = await page.getTextContent();
+                    text.items.forEach(item => {
+                        textContent += item.str + ' ';
+                    });
+                }
+
+                pdfOutput.textContent = textContent;
+            }
+        });
+    </script>
+</body>
+</html>

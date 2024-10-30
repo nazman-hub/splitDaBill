@@ -47,6 +47,7 @@ document.querySelectorAll('#myTable input').forEach(input => {
     input.addEventListener('focus', function(event) {
         // Get the current cell (td) containing the input
         let currentCell = event.target.parentElement;
+        console.log(currentCell);
         
         // Optional: highlight the current cell for visibility
         currentCell.style.backgroundColor = "lightyellow";
